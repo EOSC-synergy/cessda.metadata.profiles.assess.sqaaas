@@ -1,0 +1,46 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: fix/updatego
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/cessda/cessda.metadata.profiles:
+      branch: main
+      repo: https://github.com/cessda/cessda.metadata.profiles
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/cessda/cessda.metadata.profiles git:
+        commands:
+        - /usr/bin/env sh .sqa/script.bluebell_positive_mongoose.sh
+        container: qc.acc_flax_mature_beaver
+  QC.Doc:
+    repos:
+      github.com/cessda/cessda.metadata.profiles find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.hunter_responsible_eagle.sh
+        container: qc.doc_slate_peppy_mongoose
+      github.com/cessda/cessda.metadata.profiles git:
+        commands:
+        - /usr/bin/env sh .sqa/script.forest_worried_komodo.sh
+        container: qc.doc_tide_shrewd_coyote
+      github.com/cessda/cessda.metadata.profiles markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.rust_open_donkey.sh
+        container: qc.doc_grege_exuberant_armadillo
+  QC.Lic:
+    repos:
+      github.com/cessda/cessda.metadata.profiles licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.celadon_zany_dhole.sh
+        container: qc.lic_orange_curious_osprey
+  QC.Ver:
+    repos:
+      github.com/cessda/cessda.metadata.profiles get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.rosewater_easygoing_kirin.sh
+        container: qc.ver_chestnut_melancholy_groundhog
+timeout: 5400
